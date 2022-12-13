@@ -6,10 +6,8 @@ class Form extends React.Component {
     const {
       cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
       cardImage, cardRare, cardTrunfo, isSaveButtonDisabled,
-      onInputChange, onSaveButtonClick, hasTrunfo,
+      onInputChange, onSaveButtonClick, // hasTrunfo
     } = this.props;
-    // Log temporario, apenas para passar no lint
-    console.log(hasTrunfo);
     return (
       <form>
         <h2>ADICIONE NOVA CARTA</h2>
@@ -133,11 +131,9 @@ Form.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
-  hasTrunfo: PropTypes.bool.isRequired,
+  // hasTrunfo: PropTypes.bool.isRequired,
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
 };
 export default Form;
-
-// PONTO DE RESET
