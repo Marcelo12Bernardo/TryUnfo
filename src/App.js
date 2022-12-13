@@ -27,7 +27,7 @@ class App extends React.Component {
     }, this.verificaCampos);
   };
 
-  ativaClickBtnSave = (e) => {
+  onSaveButtonClick = (e) => {
     e.preventDefault();
     this.setState({
       cardName: '',
@@ -78,7 +78,7 @@ class App extends React.Component {
       <div>
         <h1>Tryunfo</h1>
         <Form
-          ativaClickBtnSave={ this.ativaClickBtnSave }
+          onSaveButtonClick={ this.onSaveButtonClick }
           onInputChange={ this.onInputChange }
           { ...this.state }
         />
