@@ -108,7 +108,9 @@ class Form extends React.Component {
               checked={ cardTrunfo }
             />
           </section>
-        ) : (<p>Você já tem um Super Trunfo em seu baralho</p>)}
+        ) : (
+          <p>Você já tem um Super Trunfo em seu baralho</p>
+        )}
 
         <button
           type="submit"

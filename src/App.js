@@ -16,6 +16,7 @@ class App extends React.Component {
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
+      cardList: [],
     };
   }
 
@@ -27,9 +28,26 @@ class App extends React.Component {
     }, this.verificaCampos);
   };
 
-  onSaveButtonClick = (e) => {
-    e.preventDefault();
+  onSaveButtonClick = (event) => {
+    event.preventDefault();
+    const {
+      cardName, cardDescription, cardAttr1, cardAttr2,
+      cardAttr3, cardImage, cardRare, cardTrunfo, cardList,
+    } = this.state;
+
     this.setState({
+      cardList: [
+        ...cardList,
+        { cardName,
+          cardDescription,
+          cardAttr1,
+          cardAttr2,
+          cardAttr3,
+          cardImage,
+          cardRare,
+          cardTrunfo,
+        },
+      ],
       cardName: '',
       cardDescription: '',
       cardImage: '',
@@ -38,7 +56,7 @@ class App extends React.Component {
       cardAttr2: '0',
       cardAttr3: '0',
       hasTrunfo: !!cardTrunfo,
-      cardTrunfo: false,
+      // cardTrunfo: true,
     });
   };
 
@@ -67,15 +85,16 @@ class App extends React.Component {
       cardRare,
     } = this.state;
     const atbsValidos = this.validaAtributosCard();
-    const validation = (cardName.length > 0
+    const validacaoCamp = (cardName.length > 0
     && cardDescription.length > 0
     && cardImage.length > 0
     && cardRare.length > 0);
-    if (validation && atbsValidos) this.setState({ isSaveButtonDisabled: false });
-    if (!validation || !atbsValidos) this.setState({ isSaveButtonDisabled: true });
+    if (validacaoCamp && atbsValidos) this.setState({ isSaveButtonDisabled: false });
+    if (!validacaoCamp || !atbsValidos) this.setState({ isSaveButtonDisabled: true });
   };
 
   render() {
+    const { cardList } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -87,6 +106,22 @@ class App extends React.Component {
         <Card
           { ...this.state }
         />
+        {
+          cardList.length > 0 && cardList.map((card) => (
+            <section key={ card.cardName }>
+              <Card
+                cardName={ card.cardName }
+                cardDescription={ card.cardDescription }
+                cardAttr1={ card.cardAttr1 }
+                cardAttr2={ card.cardAttr2 }
+                cardAttr3={ card.cardAttr3 }
+                cardImage={ card.cardImage }
+                cardRare={ card.cardRare }
+                cardTrunfo={ card.cardTrunfo }
+              />
+            </section>
+          ))
+        }
       </div>
     );
   }
